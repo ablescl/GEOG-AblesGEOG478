@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2> JavaScript if.. else</h2>
+
+<p>Checking Numbers</p>
+
+<p id="demo"></p>
+
+<script>
+var myVacation = ['Dallas', 'Houston', 'Austin','San Antonio'];
+var i = 0;
+var text = "";
+for (;myVacation[i];) {
+    text += cars[i] + "<br>"
+    i++;
+}
+document.getElementById("demo".innerHTML) = text;
+
+
+</script>
+</body>
+</html>

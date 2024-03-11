@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Casey Ables First Web Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+var map = L.map('map').setView([30.6280, -96.3344], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Locate the user and zoom to their location
+map.locate({setView: true, maxZoom: 16});
+
+// Draw a circle around Kyle Field
+var kyleField = L.circle([30.609882,-96.340431], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 200
+}).addTo(map).bindPopup("Kyle Field");
+
+// Custom icons
+var omIcon = L.icon({
+    iconUrl: 'https://originalmineralpro.com/cdn/shop/files/logo.png?v=1622542959',
+    iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+});
+
+var academicIcon = L.icon({
+    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2599/2599288.png',
+    iconSize: [38, 95],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76]
+});
+
+// Markers with custom icons
+L.marker([ 30.617712, -96.336697], {icon: omIcon}).addTo(map).bindPopup("O&M Building at Texas A&M");
+L.marker([30.615709, -96.340753], {icon: academicIcon}).addTo(map).bindPopup("Academic Building at Texas A&M");
+
+// Display coordinates in a popup on click
+map.on('click', function(e) {
+    var coord = e.latlng.toString().split(',');
+    var lat = coord[0].split('(');
+    var lng = coord[1].split(')');
+    L.popup()
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at latitude: " + lat[1] + " and longitude:" + lng[0])
+        .openOn(map);
+});
+
+</script>
+
+</body>
+</html>

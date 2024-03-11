@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>My Dinner Menu</title>
+</head>
+<body>
+
+<h1>My dinner menu!</h1>
+
+<ul>
+    <li>Main Course: <input type="text" id="mainCourse"></li>
+    <li>Drinks: <input type="text" id="drinks"></li>
+    <li>Dessert: <input type="text" id="dessert"></li>
+</ul>
+
+<button id="dinner-button">My dinner</button>
+
+<script>
+    document.getElementById("dinner-button").addEventListener("click", function() {
+        var mainCourse = document.getElementById("mainCourse").value;
+        var drinks = document.getElementById("drinks").value;
+        var dessert = document.getElementById("dessert").value;
+
+        var menu = "My dinner menu is: Main Course: " + mainCourse + " Drinks: " + drinks + " Dessert: " + dessert + "!";
+        document.getElementById("Menu").textContent = menu;
+    });
+</script>
+
+<div id="Menu"></div>
+
+</body>
+</html>
